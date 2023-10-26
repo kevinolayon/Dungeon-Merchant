@@ -7433,6 +7433,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391930685}
   m_CullTransparentMesh: 1
+--- !u!1 &457756925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457756926}
+  - component: {fileID: 457756927}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &457756926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457756925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2031271358}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &457756927
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457756925}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.21}
+  serializedVersion: 2
+  m_Radius: 0.82
 --- !u!1001 &497584177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8307,7 +8355,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 711209215}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1774747267}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_MethodName: ToggleBag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &711209215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68400,9 +68460,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.06}
   serializedVersion: 2
-  m_Radius: 0.26
+  m_Radius: 0.09
 --- !u!212 &1482891078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -68482,7 +68542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee75614c81b1654db385c6509b874b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 8
+  interactKey: 101
   rb: {fileID: 1482891076}
   anim: {fileID: 1482891081}
 --- !u!95 &1482891081
@@ -68787,7 +68848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -68802,8 +68863,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4287339193
-  m_fontColor: {r: 0.7254902, g: 0.6039216, b: 0.54509807, a: 1}
+    rgba: 9149113
+  m_fontColor: {r: 0.7254902, g: 0.6039216, b: 0.54509807, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -69292,6 +69353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c824c79a1835d7d46a9767109aea6435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopGroup: {fileID: 15922473}
+  bagGroup: {fileID: 1931690056}
+  interactTMP: {fileID: 1606564609}
 --- !u!1 &1776261538
 GameObject:
   m_ObjectHideFlags: 0
@@ -70409,6 +70473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031271358}
+  - component: {fileID: 2031271360}
   - component: {fileID: 2031271357}
   - component: {fileID: 2031271356}
   - component: {fileID: 2031271359}
@@ -70502,7 +70567,8 @@ Transform:
   m_LocalPosition: {x: 0.33, y: 5.71, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 457756926}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70522,6 +70588,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!114 &2031271360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031271355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f8c233cb931cf40ab798de815210ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061262782
 GameObject:
   m_ObjectHideFlags: 0

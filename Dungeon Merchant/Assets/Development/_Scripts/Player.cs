@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed; // Control the movement speed
-    public Rigidbody2D rb;
-    public Animator anim;
+    [SerializeField] float moveSpeed; // Control the movement speed
+    [SerializeField] KeyCode interactKey;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Animator anim;
+
+    IInteractable currentInteractable;
+
+    private void Update()
     {
-        
+        InteractInput();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Movement();
@@ -38,6 +38,38 @@ public class Player : MonoBehaviour
             anim.SetFloat("horizontal", movement.x);
             anim.SetFloat("vertical", movement.y);
         }
+
         anim.SetFloat("speed", movement.sqrMagnitude);
+    }
+
+    public void InteractInput()
+    {
+        if (currentInteractable == null) return;
+
+        if (Input.GetKeyDown(interactKey))
+        {
+            CanvasManager.Instance.ToggleInteractText(false);
+            currentInteractable.Interact();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (currentInteractable != null) return;
+
+        if (collision.TryGetComponent(out IInteractable interactable))
+        {
+            CanvasManager.Instance.ToggleInteractText(true);
+            currentInteractable = interactable;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out IInteractable interactable))
+        {
+            CanvasManager.Instance.ToggleInteractText(false);
+            currentInteractable = null;
+        }
     }
 }
