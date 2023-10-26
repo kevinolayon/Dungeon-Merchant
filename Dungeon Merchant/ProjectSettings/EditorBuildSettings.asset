@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Development/Scenes/Dungeon Merchant.unity
+    guid: ba4696e60e856ce4aae07e75fb553946
   m_configObjects: {}
