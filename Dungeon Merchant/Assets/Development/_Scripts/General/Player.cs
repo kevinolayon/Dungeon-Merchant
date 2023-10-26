@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
         EquipmentAnim();
     }
 
+    #region Equipment
     public void EquipmentAnim()
     {
         if (equipmentAnimList.Count <= 0) return;
@@ -66,6 +67,28 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
+    // Sorry for bad implementation below, my bad because of short time
+    public void ShowHelmet()
+    {
+        equipmentAnimList[0].gameObject.SetActive(true);
+    }
+
+    public void HideHelmet()
+    {
+        equipmentAnimList[0].gameObject.SetActive(false);
+    }
+
+    public void ShowArmor()
+    {
+        equipmentAnimList[1].gameObject.SetActive(true);
+    }
+
+    public void HideArmor()
+    {
+        equipmentAnimList[1].gameObject.SetActive(false);
+    }
+    #endregion
 
     public void InteractInput()
     {
