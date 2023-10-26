@@ -31,6 +31,7 @@ public class CanvasManager : Singleton<CanvasManager>
         OpenBag();
         shopOpened = true;
         ToggleGroup(shopGroup, true);
+        inventory.shopActive = true;
     }
 
     public void CloseShop()
@@ -38,6 +39,7 @@ public class CanvasManager : Singleton<CanvasManager>
         shopOpened = false;
         ToggleGroup(shopGroup, false);
         CloseBag();
+        inventory.shopActive = false;
     }
 
     public void ToggleBag()

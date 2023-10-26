@@ -50,6 +50,7 @@ public class Shop : MonoBehaviour
         {
             GameManager.Instance.RemoveCurrency(itemSelected.buyPrice);
             Inventory.Instance.UpdateCurrency();
+            Inventory.Instance.AddItem(itemSelected);
         }
     }
 }

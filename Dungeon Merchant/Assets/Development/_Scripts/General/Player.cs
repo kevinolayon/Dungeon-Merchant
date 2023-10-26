@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
     [SerializeField] float moveSpeed; // Control the movement speed
     [SerializeField] KeyCode interactKey;

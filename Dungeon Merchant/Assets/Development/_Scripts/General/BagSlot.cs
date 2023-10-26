@@ -1,18 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BagSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Item item;
+    [SerializeField] Image itemIcon;
+
+    public void SetItem(Item itemInfo)
     {
-        
+        item = itemInfo;
+        itemIcon.gameObject.SetActive(true);
+        itemIcon.sprite = item.itemIcon;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveItem()
     {
-        
+        item = null;
+        itemIcon.gameObject.SetActive(false);
+        itemIcon.sprite = null;
+    }
+
+    public void EquipOrSell()
+    {
+        if (item == null) return;
+
+        if (Inventory.Instance.shopActive)
+        {
+            GameManager.Instance.AddCurrency(item.sellPrice);
+            Inventory.Instance.RemoveItem(item);
+            RemoveItem();
+        }
+        else
+        {
+            if (Inventory.Instance.EquipItem(item))
+                RemoveItem();
+        }
     }
 }

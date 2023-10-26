@@ -12,6 +12,7 @@ public class Item
 {
     public string itemName;
     public Sprite itemIcon;
+    public ItemType itemType;
     public int buyPrice;
     public int sellPrice;
 }
