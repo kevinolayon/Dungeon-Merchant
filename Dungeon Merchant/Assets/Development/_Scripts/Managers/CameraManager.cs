@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
 
     public void Follow()
     {
+        // Check if has target
         if (target != null)
         {
             // Desired position

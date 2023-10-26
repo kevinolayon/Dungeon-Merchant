@@ -33,8 +33,11 @@ public class Player : MonoBehaviour
         rb.velocity = movement;
 
         // Set animation parameters
-        anim.SetFloat("horizontal", movement.x);
-        anim.SetFloat("vertical", movement.y);
+        if (movement.sqrMagnitude > 0)
+        {
+            anim.SetFloat("horizontal", movement.x);
+            anim.SetFloat("vertical", movement.y);
+        }
         anim.SetFloat("speed", movement.sqrMagnitude);
     }
 }
