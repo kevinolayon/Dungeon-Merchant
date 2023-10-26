@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CanvasManager : Singleton<CanvasManager>
 {
+    [SerializeField] Inventory inventory;
+    [SerializeField] Shop shop;
     [SerializeField] CanvasGroup shopGroup;
     [SerializeField] CanvasGroup bagGroup;
     [SerializeField] TextMeshProUGUI interactTMP;
@@ -69,6 +71,11 @@ public class CanvasManager : Singleton<CanvasManager>
 
         // Check if Shop is open and close it too
         if (shopOpened) CloseShop();
+    }
+
+    public void UpdateCurrency()
+    {
+        inventory.UpdateCurrency();
     }
 
     public void ToggleInteractText(bool value)
