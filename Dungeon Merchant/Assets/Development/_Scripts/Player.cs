@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed; // Control the movement speed
     public Rigidbody2D rb;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +31,10 @@ public class Player : MonoBehaviour
 
         // Apply the movement to the Rigidbody2D
         rb.velocity = movement;
+
+        // Set animation parameters
+        anim.SetFloat("horizontal", movement.x);
+        anim.SetFloat("vertical", movement.y);
+        anim.SetFloat("speed", movement.sqrMagnitude);
     }
 }
