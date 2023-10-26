@@ -11,48 +11,71 @@ public class CanvasManager : Singleton<CanvasManager>
     bool bagOpened;
     bool shopOpened;
 
+    /// <summary>
+    /// Use this to fade CanvasGroup and toggle interactable and raycast.
+    /// </summary>
+    public static void ToggleGroup(CanvasGroup group, bool value)
+    {
+        if (value) group.DOFade(1, .25f);
+        else group.DOFade(0, .25f);
+
+        group.interactable = value;
+        group.blocksRaycasts = value;
+    }
+
     public void OpenShop()
     {
         if (shopOpened) return;
         OpenBag();
         shopOpened = true;
-        shopGroup.DOFade(1, .25f);
+        ToggleGroup(shopGroup, true);
     }
 
     public void CloseShop()
     {
         shopOpened = false;
-        shopGroup.DOFade(0, .25f);
+        ToggleGroup(shopGroup, false);
+        CloseBag();
     }
 
     public void ToggleBag()
     {
         // Toggle
         bagOpened = !bagOpened;
-        
+
         // Open bag
-        if (bagOpened) bagGroup.DOFade(1, .25f);
+        if (bagOpened) ToggleGroup(bagGroup, true);
 
         // Close bag
-        else bagGroup.DOFade(0, .25f);
+        else
+        {
+            ToggleGroup(bagGroup, false);
+
+            // Check if Shop is open and close it too
+            if (shopOpened) CloseShop();
+        }
     }
 
     public void OpenBag()
     {
         bagOpened = true;
-        bagGroup.DOFade(1, .25f);
+        ToggleGroup(bagGroup, true);
     }
 
     public void CloseBag()
     {
         bagOpened = false;
-        bagGroup.DOFade(0, .25f);
+        ToggleGroup(bagGroup, false);
+
+        // Check if Shop is open and close it too
+        if (shopOpened) CloseShop();
     }
 
     public void ToggleInteractText(bool value)
     {
         // Show if true
         if (value) interactTMP.DOFade(1, .25f);
+
         // Hide if false
         else interactTMP.DOFade(0, 1);
     }
