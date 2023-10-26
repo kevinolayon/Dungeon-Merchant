@@ -17,6 +17,7 @@ public class EquipmentSlot : MonoBehaviour
 
     public void UnequipItem()
     {
+        if (item == null) return;
         Inventory.Instance.AddItem(item);
 
         switch (item.itemType)
